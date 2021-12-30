@@ -1,4 +1,7 @@
-module.exports = (discord, client, message) => {
+// FOR MONGODB TOO
+// const profileModel = require('../../models/profileSchema');
+
+module.exports = async (discord, client, message) => {
     const prefix = ('-')
 
     // filter curse words //this infinitely spams
@@ -6,6 +9,24 @@ module.exports = (discord, client, message) => {
 
     // returns if message is from bot or doesn't start with prefix
     if (message.author.bot || !message.content.startsWith(prefix)) return;
+
+    // ~~~FOR MONGODB BUT ITS WORK IN PROGRESS~~~ //
+        // let profileData;
+        // try {
+        //     profileData = await profileModel.findOne({ userId: message.author.id });
+        //     if (!profileData) {
+        //         const profile = await profileModel.create ({
+        //             userId: message.author.id,
+        //             serverID: message.guild.id,
+        //             coins: 1000,
+        //             bank: 0
+        //         });
+        //         profile.save();
+        //     }
+        // }
+        // catch (err) {
+        //     console.log(err);
+        // }
 
     const args = message.content.slice(prefix.length).split(/ +/);
     const cmd = args.shift().toLowerCase();
